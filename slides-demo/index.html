@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>slides-demo</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./main.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+    
 </head>
 
 <body>
     
-    <div class="left-button"></div>
-    <div class="right-button"></div>
+    <div class="left-button" id="left-button"></div>
+    <div class="right-button" id="right-button"></div>
     <div id="window" class="window">
-        <div class="wrapper">
-            <ul class="img">
+        <div class="wrapper" id="wrapper">
+            <ul class="img" id="img">
                 <li><img
                         src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1918297618,308111250&fm=15&gp=0.jpg">
                 </li>
@@ -37,14 +38,14 @@
     </div>
     <div class="button-wrapper">
         <ul class="button">
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
+           <button id="button1">第1张</button>
+           <button id="button2">第2张</button>
+           <button id="button3">第3张</button>
+           <button id="button4">第4张</button>
+           <button id="button5">第5张</button>
         </ul>
     </div>
-
+    <script src="./main.js"></script>
 </body>
 
 </html>

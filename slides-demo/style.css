@@ -26,6 +26,18 @@ img{
 }
 .wrapper{
     position: relative;
+    transition: transform 0.5s;
+}
+.button-wrapper{
+    width: 100%;
+    text-align: center;
+}
+.button-wrapper .button{
+    width: 241px;
+    margin: 0 auto;
+}
+.button-wrapper button{
+    margin: 0 5px;
 }
 .window{
     border: 1px solid #888888;
@@ -35,19 +47,11 @@ img{
     margin: 20px auto;
 }
 .button-wrapper{
-    width: 100px;
     margin: 10px auto;
-}
-ul.button >li{
-    border: 1px solid #777777;
-    background-color: #A3AEC4;
-    border-radius: 50%;
-    margin: 0 4px;
 }
 .left-button{
     width: 40px;
     height: 40px;
-    border: 1px solid #C8C6CC;
     position: absolute;
     top: 20%;
     right: 30%;
@@ -55,17 +59,40 @@ ul.button >li{
 .left-button::before{
     content:'';
     border: 20px solid;
-    border-color:  transparent transparent transparent red;
+    border-color:  transparent transparent transparent #C8C6CC;
     width: 0;
     position: absolute;
 
 }
+.left-button::after{
+    content:'';
+    border: 20px solid ;
+    border-color:transparent transparent transparent #F2F2F2;
+    left: -5px;
+    width: 0;
+    position: absolute;
+}
 .right-button{
     width: 40px;
     height: 40px;
-    border: 1px solid #C8C6CC;
     position: absolute;
     top: 20%;
     left: 30%;
+}
+.right-button::before{
+    content:'';
+    border: 20px solid;
+    border-color:  transparent #C8C6CC transparent transparent ;
+    width: 0;
+    position: absolute;
+
+}
+.right-button::after{
+    content:'';
+    border: 20px solid ;
+    border-color:transparent #F2F2F2 transparent transparent ;
+    right: -5px;
+    width: 0;
+    position: absolute;
 }
  

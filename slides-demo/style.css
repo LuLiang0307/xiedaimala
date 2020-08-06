@@ -7,38 +7,6 @@
 body{
     background-color: #f2f2f2;
 }
-
-ul > li{
-    display: inline;
-    letter-spacing: normal;    
-    vertical-align: top;
-}
-ul .img{
-    letter-spacing: -8px;
-}
-ul{
-    display: flex;
-    align-items: flex-start;
-}
-img{
-    height: 300px;
-    width: 400px;
-}
-.wrapper{
-    position: relative;
-    transition: transform 0.5s;
-}
-.button-wrapper{
-    width: 100%;
-    text-align: center;
-}
-.button-wrapper .button{
-    width: 241px;
-    margin: 0 auto;
-}
-.button-wrapper button{
-    margin: 0 5px;
-}
 .window{
     border: 1px solid #888888;
     height: 301px;
@@ -46,9 +14,28 @@ img{
     overflow: hidden;
     margin: 20px auto;
 }
-.button-wrapper{
-    margin: 10px auto;
+.images{
+    display: flex;
+    align-items: flex-start;
+    transition: all 0.5s;
 }
+.images img{
+    height: 300px;
+    width: 400px;
+}
+.buttons{
+    width: 300px;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+.buttons button{
+    margin: 0 5px;
+}
+.red{
+    color:red;
+}
+
 .left-button{
     width: 40px;
     height: 40px;

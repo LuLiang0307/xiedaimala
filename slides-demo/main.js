@@ -1,32 +1,37 @@
+let buttons=$(".buttons button")
+for(let i=0;i<buttons.length;i++){
+    $(buttons[i]).on('click',function(e){
+        let index = $(e.currentTarget).index()
+        let px = index * -400
+        $("#images").css({transform: 'translate('+px+'px)'})
+        n = index
+        activeButton(buttons.eq(n))
 
-$("#button1").on('click',function(){
-    $("#wrapper").css({
-        transform: 'translateX(0)'
     })
+}
+var n=0
+var length = buttons.length
+playSlide(n % length)
+
+let timerId = setTimer()
+
+$("#window").on('mouseenter',function(){
+    window.clearInterval(timerId)
 })
-$("#button2").on('click',function(){
-    $("#wrapper").css({
-        transform: 'translateX(-400px)'
-    })
+$("#window").on('mouseleave',function(){
+    timerId = setTimer()
 })
-$("#button3").on('click',function(){
-    $("#wrapper").css({
-        transform: 'translateX(-800px)'
-    })
-})
-$("#button4").on('click',function(){
-    $("#wrapper").css({
-        transform: 'translateX(-1200px)'
-    })
-})
-$("#button5").on('click',function(){
-    $("#wrapper").css({
-        transform: 'translateX(-1600px)'
-    })
-})
-function ClickButton(){
-    var n=1;
-    $('"#button'+n+'"').on('click',function(){
-        
-    })
+function activeButton($button){
+    $button
+    .addClass('red')
+    .siblings('.red').removeClass('red')
+}
+function playSlide(index){
+    buttons.eq(index).trigger('click')
+}
+function setTimer(){
+    return setInterval(()=>{
+        n+=1
+        playSlide(n % length)
+    },1500)
 }

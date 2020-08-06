@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://js.jirengu.com
+
+Copyright (c) 2020 by anonymous (http://js.jirengu.com/diboyayoxo/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+.loading{
+  width: 200px;
+  height: 200px;
+  border: 1px solid red;
+  position:relative;
+}
+.loading::before,.loading::after{
+  content:'';
+  width:0px;
+  height:0px;
+  background: black;
+  position:absolute;
+  border-radius: 50%;
+  top:0;left:0;right:0;bottom:0;
+  margin:auto;
+  animation: s 1.5s linear infinite;
+}
+.loading::after{
+  animation-delay: 0.75s;
+}
+@keyframes s{
+  0%{
+    width:0px;height:0px;opacity:1;
+  }
+  100%{
+    width:100px;height:100px;opacity:0;
+  }
+}
+</style>
+</head>
+<body>
+<div class="loading"></div>
+</body>
+</html>

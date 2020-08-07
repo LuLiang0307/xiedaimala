@@ -35,25 +35,49 @@
 //         playSlide(n % length)
 //     },1500)
 // }
-$(".images img:nth-child(1)").addClass('current').siblings().addClass('enter')
-let n = 1
-let index = $(".images img").length
+let n,length
+init()
 setInterval(() => {
-    $(`.images img:nth-child(${x(n,index)})`).removeClass('current').addClass('leave')
+    makeLeave(getImage(n,length))
        .one('transitionend',(e)=>{
-        console.log(111)
-        $(e.currentTarget).removeClass('leave').addClass('enter')
+        makeEnter($(e.currentTarget))
     })
-    $(`.images img:nth-child(${x(n+1,index)})`).removeClass('enter').addClass('current')
+    makeCurrent(getImage(n+1,length))
     n +=1;
 }, 3000)
 
-function x(n, index){
-    if(n> index){
-        n= n % index
-        if(n % index === 0){
-            n = index
+
+
+
+
+
+
+
+
+function getImage(index,length){
+    $(`.images img:nth-child(${x(index,length)})`)
+}
+function x(n, length){
+    if(n> length){
+        n= n % length
+        if(n % length === 0){
+            n = length
         }
     }
     return n
+}
+function makeLeave(index){
+    index.removeClass('current').addClass('leave')
+    return index
+}
+function makeEnter(index){
+    index.removeClass('leave').addClass('enter')
+}
+function makeCurrent(index){
+    index.removeClass('enter').addClass('current')
+}
+function init(){
+    n = 1
+    index = $(".images img").length
+    $(".images img:nth-child(1)").addClass('current').siblings().addClass('enter')
 }

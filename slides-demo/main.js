@@ -1,83 +1,51 @@
-// let buttons=$(".buttons button")
-// for(let i=0;i<buttons.length;i++){
-//     $(buttons[i]).on('click',function(e){
-//         let index = $(e.currentTarget).index()
-//         let px = index * -400
-//         $("#images").css({transform: 'translate('+px+'px)'})
-//         n = index
-//         activeButton(buttons.eq(n))
+let $buttons = $("#buttons > button")
+let $slides = $("#slides")
+let $images = $("#slides > img")
 
-//     })
-// }
-// var n=0
-// var length = buttons.length
-// playSlide(n % length)
+let current = 0
+$slides.css({transform:'translateX(-400px)'})
+makeFakeSlides()
+bindEvents()
+$("#left-button").on('click',function(){
+    goToSlides(current+1)
+})
+$("#right-button").on('click',function(){
+    goToSlides(current-1)
+})
 
-// let timerId = setTimer()
-
-// $("#window").on('mouseenter',function(){
-//     window.clearInterval(timerId)
-// })
-// $("#window").on('mouseleave',function(){
-//     timerId = setTimer()
-// })
-// function activeButton($button){
-//     $button
-//     .addClass('red')
-//     .siblings('.red').removeClass('red')
-// }
-// function playSlide(index){
-//     buttons.eq(index).trigger('click')
-// }
-// function setTimer(){
-//     return setInterval(()=>{
-//         n+=1
-//         playSlide(n % length)
-//     },1500)
-// }
-let n,length
-init()
-setInterval(() => {
-    makeLeave(getImage(n,length))
-       .one('transitionend',(e)=>{
-        makeEnter($(e.currentTarget))
-    })
-    makeCurrent(getImage(n+1,length))
-    n +=1;
-}, 3000)
-
-
-
-
-
-
-
-
-
-function getImage(index,length){
-    $(`.images img:nth-child(${x(index,length)})`)
+function makeFakeSlides(){//采用了闭包，懒得传参数了
+    let $firstClone = $images.eq(0).clone(true)//true表示深拷贝，子节点一起拷贝
+    let $lastClone = $images.eq($images.length - 1).clone(true)
+    $slides.append($firstClone)
+    $slides.prepend($lastClone)
 }
-function x(n, length){
-    if(n> length){
-        n= n % length
-        if(n % length === 0){
-            n = length
-        }
+function bindEvents(){
+    $(".buttons").on('click','button',function(e){
+        let $button = $(e.currentTarget)
+        let index = $($button).index()
+        goToSlides(index)
+    }) 
+}
+function goToSlides (index){
+    if(index > $($buttons).length - 1){
+        index = 0
+    }else if(index< 0){
+        index = $($buttons).length - 1
     }
-    return n
-}
-function makeLeave(index){
-    index.removeClass('current').addClass('leave')
-    return index
-}
-function makeEnter(index){
-    index.removeClass('leave').addClass('enter')
-}
-function makeCurrent(index){
-    index.removeClass('enter').addClass('current')
-}
-function init(){
-    n = 1
-    index = $(".images img").length
-    $(".images img:nth-child(1)").addClass('current').siblings().addClass('enter')
+    if(current === $($buttons).length-1 && index === 0){
+        $($slides).css({transform:`translateX(${-($($buttons).length+1) * 400}px)`})
+        .one('transitionend',function(e){
+            $($slides).hide().offset()
+            $($slides).css({transform:`translateX(${-(index+1) * 400}px)`}).show()
+        })
+    }else if(current === 0 && index === $($buttons).length-1){
+        $($slides).css({transform:`translateX(0px)`})
+        .one('transitionend',function(e){
+            $($slides).hide().offset()
+            $($slides).css({transform:`translateX(${-(index+1) * 400}px)`}).show()
+        })
+    }else{
+        $($slides).css({transform:`translateX(${-(index+1) * 400}px)`})
+    }
+    current = index
 }

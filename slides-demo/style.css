@@ -21,10 +21,9 @@ body{
     position: relative;
 }
 .images img{
-    top:0;
-    position: absolute;
+    top:0;;
     height: 300px;
-    /* width: 100%; */
+    width: 100%;
     transition: all 0.5s;
 }
 .buttons{
@@ -36,22 +35,8 @@ body{
 .buttons button{
     margin: 0 5px;
 }
-/* .red{
-    color:red;
-} */
 
-.images img.current{
-    left: 0;
-    transform: translateX(0);
-    z-index: 1
-}
-.images img.enter{
-    transform: translateX(100%);
-}
-.images img.leave{
-    transform: translateX(-100%);
-    z-index:1;
-}
+
 .left-button{
     width: 40px;
     height: 40px;
